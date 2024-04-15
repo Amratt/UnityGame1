@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     public float direction = 5.0f;
     public float horizontalInput;
+    public float verticalInput;
     void Start()
     {
         
@@ -19,8 +20,8 @@ public class PlayerController : MonoBehaviour
     {
         // Making the car move forward
         horizontalInput = Input.GetAxis("Horizontal"); // This is the player input to move horizontally
-
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        transform.Translate(Vector3.right * Time.deltaTime * direction * horizontalInput);
+        verticalInput = Input.GetAxis("Vertical");
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        transform.Rotate(Vector3.up, Time.deltaTime * direction * horizontalInput);
     }
 }
