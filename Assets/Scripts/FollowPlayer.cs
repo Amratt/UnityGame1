@@ -14,7 +14,12 @@ public class FollowPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+
+    // used LateUpdate instead of Update, because of the jittering issues. 
+    // to have the camera follow the car smoothly, the follow method needs update after
+    // the car moves. using the Update method can somtimmes triggers the follow before the car moves
+    // which causes the jittering.
+    void LateUpdate()
     {
         // adding to the player position a new vector to offest the position of the 0,0,0 camera position
         transform.position = player.transform.position + offset;
