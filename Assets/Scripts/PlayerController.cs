@@ -6,10 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public float speed = 10.0f;
-    public float direction = 5.0f;
-    public float horizontalInput;
-    public float verticalInput;
+    // Private Variables
+    private float speed = 20.0f;
+    private float direction = 40.0f;
+    private float horizontalInput;
+    private float verticalInput;
     void Start()
     {
         
@@ -18,10 +19,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Making the car move forward
-        horizontalInput = Input.GetAxis("Horizontal"); // This is the player input to move horizontally
+        // Take user input
+        horizontalInput = Input.GetAxis("Horizontal"); 
         verticalInput = Input.GetAxis("Vertical");
+
+        // Making the car move forward
         transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        // Making the car rotate
         transform.Rotate(Vector3.up, Time.deltaTime * direction * horizontalInput);
     }
 }
